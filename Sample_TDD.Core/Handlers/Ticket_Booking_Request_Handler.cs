@@ -9,12 +9,19 @@ namespace Sample_TDD.Core.Handlers
         }
 
         public ServiceBookingResult BookService(Ticket_Booking_Request bookingRequest)
-            => new ServiceBookingResult
+        {
+            if(bookingRequest is null)
+            {
+                throw new ArgumentNullException(nameof(bookingRequest));
+            }
+            return new ServiceBookingResult
             {
 
                 Name = bookingRequest.Name,
                 Family = bookingRequest.Family,
                 Email = bookingRequest.Email
             };
+        }
+
     }
 }
